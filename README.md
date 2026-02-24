@@ -55,6 +55,18 @@ Um gerenciador de tarefas estilo Kanban moderno, desenvolvido com React, TypeScr
 5. **Acessar a aplicação:**
    Abra o navegador no endereço indicado pelo Vite (geralmente `http://localhost:5173`).
 
+## ⚠️ Aviso Importante para Deploy (GitHub Pages)
+
+Esta aplicação depende de um servidor backend (`json-server`) rodando em `http://localhost:3000` para suas operações de CRUD.
+
+**Se você estiver acessando a aplicação via GitHub Pages (ou qualquer outro ambiente de hospedagem de arquivos estáticos), o frontend não conseguirá se comunicar com o `json-server` local.** Isso resultará em erros de CORS (Cross-Origin Resource Sharing) e a aplicação não funcionará como esperado, pois não haverá como buscar, criar, atualizar ou deletar tarefas.
+
+Para que a aplicação funcione completamente em um ambiente de deploy que não seja o seu ambiente de desenvolvimento local, você precisará:
+- **Ter acesso e rodar o `json-server` localmente** (e a aplicação tentar se conectar a ele, o que resultará em erros de CORS a menos que o `json-server` seja configurado para permitir isso de origens externas, o que é inseguro para localhost).
+- **Ou implantar o seu próprio backend** em um serviço acessível publicamente (como Render, Vercel Functions, etc.) e atualizar a variável de ambiente `VITE_API_URL` da aplicação para apontar para esse novo backend.
+
+A versão atual da aplicação no GitHub Pages **não terá funcionalidades de persistência** a menos que um backend acessível publicamente seja configurado.
+
 ## 📁 Estrutura do Projeto
 
 - `src/components`: Componentes reutilizáveis da interface (TaskBoard, TaskCard, Form).
